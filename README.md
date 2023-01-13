@@ -4,7 +4,7 @@
 
 ## Robel Abraham - QA
 
-#### [Digital Portfolio] (https://www.codermerlin.com/users/robel-abraham/Digital%20Portfolio/index.html)
+#### [Digital Portfolio](https://www.codermerlin.com/users/robel-abraham/Digital%20Portfolio/index.html)
 
 
 ## William Turner - Development Engineer
