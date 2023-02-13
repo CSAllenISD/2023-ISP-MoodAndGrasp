@@ -2,7 +2,7 @@
 	
 #### 	[Digital Portfolio](https://www.codermerlin.com/users/benjamin-haines/Digital%20Portfolio/index.html)
 
-## Robel Abraham - QA
+## Robel Abraham - Development Engineer
 
 #### 	[Digital Portfolio](https://www.codermerlin.com/users/robel-abraham/Digital%20Portfolio/index.html)
 
