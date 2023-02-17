@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
-</head>
-<body>
-	<h1>ISP Home!<h1/>
-</body>
-</html>
+
+{% extends "home/base.html" %}
+{% block content %}
+	{% for announcements in announcements %}
+		<h1>{{ announcements.title }}</h1>
+		<p>By {{ announcements.author }} on {{ announcements.date_posted }}</p>
+		<p>{{ announcements.content }}</p>
+	{% endfor %}
+{% endblock content %}

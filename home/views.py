@@ -1,10 +1,28 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
 
 # Create your views here.
+announcements =[
+	{
+		'author': 'Robel Abraham',
+		'title': 'First announcement',
+		'content': 'this is a test for announcements',
+		'date_posted': 'Feburary 17, 2023'
+	},
+	{
+		'author': 'William Turner',
+		'title': 'Second announcement',
+		'content': 'Second test for announcements',
+		'date_posted': 'Feburary 17, 2023'
+	}
+	
+]
 
 def front_page(request):
-	return HttpResponse('<h1>ISP Home<h1>')
+	context = {
+		'announcements': announcements,
+	}
+	return render(request, 'home/home.html', context)
 
 def about(request):
-	return HttpResponse('<h1>ISP About<h1>')
+	return render(request, 'home/about.html', {'title': 'About'})
