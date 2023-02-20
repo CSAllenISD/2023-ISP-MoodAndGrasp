@@ -2,8 +2,15 @@
 {% extends "home/base.html" %}
 {% block content %}
 	{% for announcements in announcements %}
-		<h1>{{ announcements.title }}</h1>
-		<p>By {{ announcements.author }} on {{ announcements.date_posted }}</p>
-		<p>{{ announcements.content }}</p>
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ announcements.author }}</a>
+      <small class="text-muted">{{ announcements.date_posted }}</small>
+    </div>
+    <h2><a class="article-title" href="#">{{ announcements.title }}</a></h2>
+    <p class="article-content">{{ announcements.content }}</p>
+  </div>
+</article>
 	{% endfor %}
 {% endblock content %}
