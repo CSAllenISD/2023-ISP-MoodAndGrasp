@@ -122,6 +122,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 STATICFILES_DIRS = ('/Users/robelabraham/bootstrap',)
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
