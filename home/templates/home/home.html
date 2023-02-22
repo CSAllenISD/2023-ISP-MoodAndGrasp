@@ -3,6 +3,7 @@
 {% block content %}
 	{% for announcements in announcements %}
 <article class="media content-section">
+  <img class="rounded-circle article-img" src="{{ announcements.author.profile.image.url }}">
   <div class="media-body">
     <div class="article-metadata">
       <a class="mr-2" href="#">{{ announcements.author }}</a>
