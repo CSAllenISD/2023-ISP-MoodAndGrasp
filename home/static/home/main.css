@@ -1,15 +1,20 @@
 body {
-  background: #fafafa;
+  background: #e6f7ff;
   color: #333333;
   margin-top: 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
+
   color: #444444;
 }
 
 ul {
   margin: 0;
+}
+
+.error {
+  color: #d65c5c;
 }
 
 .bg-steel {
@@ -29,10 +34,8 @@ ul {
 }
 
 .content-section {
-  background: #ffffff;
+  background: #e6f7ff;
   padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
   margin-bottom: 20px;
 }
 
@@ -44,7 +47,7 @@ a.article-title:hover {
   color: #428bca;
   text-decoration: none;
 }
-
+  
 .article-content {
   white-space: pre-line;
 }
@@ -58,7 +61,7 @@ a.article-title:hover {
 .article-metadata {
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+
 }
 
 .article-metadata a:hover {
@@ -82,3 +85,4 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+

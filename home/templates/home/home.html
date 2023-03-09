@@ -9,7 +9,7 @@
       <a class="mr-2" href="#">{{ announcements.author }}</a>
       <small class="text-muted">{{ announcements.date_posted }}</small>
     </div>
-    <h2><a class="article-title" href="#">{{ announcements.title }}</a></h2>
+    <h2><a class="article-title" href="{% url 'post_detail' announcements.id %}">{{ announcements.title }}</a></h2>
     <p class="article-content">{{ announcements.content }}</p>
   </div>
 </article>

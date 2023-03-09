@@ -3,15 +3,21 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
-
+from django.forms import ValidationError
+from django.contrib.auth.models import User
+from django import forms
 def register(request):
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
 		if form.is_valid():
-			form.save()
-			username = form.cleaned_data.get('username')
-			messages.success(request, f'Your account has been created! You are now able to log in')
-			return redirect('login')
+			if User.objects.filter(email=form.cleaned_data.get('email')).exists():
+	#			raise forms.ValidationError('That email is in use. Please Log in or use a different Email')
+				messages.error(request, f'That email is in use. Please Log in or use a different Email', extra_tags='error')
+			else:
+				form.save()
+				username = form.cleaned_data.get('username')
+				messages.success(request, f'Your account has been created! You are now able to log in')
+				return redirect('login')
 	else:
 		form = UserRegisterForm()
 	return render(request, 'users/register.html', {'form':form})
