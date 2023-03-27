@@ -1,0 +1,17 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+	{% if class_codes %}
+	<h2>Hello</h2>
+	{% else %}
+	<div class="content-section">	
+		<form method="POST"> 
+			
+			<fieldset class="form-group">
+					<legend class="border-bottom mb-4">Join a Class</legend>
+					{{ c_form|crispy }}
+			</fieldset>
+		</form>
+	</div>
+	{% endif %}
+{% endblock content %}

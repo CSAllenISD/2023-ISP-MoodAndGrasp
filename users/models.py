@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+import random
+
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	image = models.ImageField(default='default.jpg', upload_to='profile_pics')
@@ -18,3 +20,27 @@ class Profile(models.Model):
 			output_size = (300, 300)
 			img.thumbnail(output_size)
 			img.save(self.image.path)
+
+class Classroom(models.Model):
+	classroom = models.OneToOneField(User, on_delete=models.CASCADE)
+
+	def create_new_class_code():
+		not_unique = True
+		while not_unique:
+			unique_ref = random.randint(1000000000, 9999999999)
+			if not Classroom.objects.filter(class_code=unique_ref):
+				not_unique = False
+		return str(unique_ref)
+	class_code = models.CharField(
+			max_length = 6,
+			blank=True,
+			editable=False,
+			unique=True,
+			default="AAAAAA"
+		)
+
+	def __str__(self):
+		return f'{self.classroom.username} Classroom'
+
+	def save(self, *args, **kwargs):
+		super(Classroom, self).save(*args, **kwargs)

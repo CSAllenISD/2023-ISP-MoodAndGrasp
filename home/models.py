@@ -8,7 +8,7 @@ class Announcements(models.Model):
 	content = models.TextField()
 	date_posted = models.DateTimeField(default=timezone.now)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
-
+	class_code = models.CharField(max_length=6, blank=True, null=True)
 	def __str__(self):
 		return self.title
 

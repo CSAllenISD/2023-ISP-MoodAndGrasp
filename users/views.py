@@ -41,4 +41,13 @@ def profile(request):
 
 	}
 	return render(request, 'users/profile.html', context)
+def classes(request):
+	c_form = None
+	if request.method == 'POST':
+		c_form = ClassJoinForm(request.POST, instance=request.user)
+		if c_form.is_valid():
+			c_form.save()
+		else:
+			c_form = ClassJoinForm(instance=request.user)
+	return render(request, 'users/classes.html', {'c_form':c_form})
 
