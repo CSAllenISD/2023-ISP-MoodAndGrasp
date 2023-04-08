@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+        </div>
+      </div>
+      <h1>Mood and Grasp</h1>
+    </header>
+    <main>
+      <div class="content">
+        <div class="questions">
+          <div class="question active">
+            <h3>Question 1:</h3>
+            <p>How do you feel about this website?</p>
+            <div class="slider-container">
+              <input type="range" min="1" max="5" value="1" class="slider" id="answerSlider1">
+              <!-- ... -->
+              <ul class="slider-labels">
+                <li data-text="Dummy text 1">😠</li>
+                <li data-text="Dummy text 2">😞</li>
+                <li data-text="Dummy text 3">😐</li>
+                <li data-text="Dummy text 4">😊</li>
+                <li data-text="Dummy text 5">😁</li>
+              </ul>
+              <!-- ... -->
+
+            </div>
+          </div>
+          <div class="question">
+            <h3>Question 2:</h3>
+            <p>How likely are you to recommend our services to a friend?</p>
+            <div class="slider-container">
+              <input type="range" min="1" max="5" value="1" class="slider" id="answerSlider2">
+              <!-- ... -->
+              <ul class="slider-labels">
+                <li data-text="Dummy text 1">😠</li>
+                <li data-text="Dummy text 2">😞</li>
+                <li data-text="Dummy text 3">😐</li>
+                <li data-text="Dummy text 4">😊</li>
+                <li data-text="Dummy text 5">😁</li>
+              </ul>
+              <!-- ... -->
+
+            </div>
+          </div>
+          <div class="question">
+            <h3>Question 3:</h3>
+            <p>How satisfied are you with our customer support?</p>
+            <div class="slider-container">
+              <input type="range" min="1" max="5" value="1" class="slider" id="answerSlider3">
+              <!-- ... -->
+              <ul class="slider-labels">
+                <li data-text="Dummy text 1">😠</li>
+                <li data-text="Dummy text 2">😞</li>
+                <li data-text="Dummy text 3">😐</li>
+                <li data-text="Dummy text 4">😊</li>
+                <li data-text="Dummy text 5">😁</li>
+              </ul>
+
+
+            </div>
+          </div>
+                <div class="additional-input">
+                <p>Anything you'd like to add?</p>
+                <textarea rows="4" cols="50"></textarea>
+              </div>
+
+          <button id="nextButton">Next</button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
