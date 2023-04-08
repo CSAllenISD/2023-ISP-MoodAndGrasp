@@ -1,0 +1,146 @@
+let currentQuestion = 0;
+
+function getRandomQuestions(questionsData, numEmotional, numStatistical) {
+    const emotionalQuestions = questionsData.filter(q => q.type === 'emotional');
+    const statisticalQuestions = questionsData.filter(q => q.type === 'statistical');
+
+    const randomEmotional = getRandomElementsFromArray(emotionalQuestions, numEmotional);
+    const randomStatistical = getRandomElementsFromArray(statisticalQuestions, numStatistical);
+
+    return randomEmotional.concat(randomStatistical);
+}
+
+function getRandomElementsFromArray(arr, num) {
+    const shuffledArray = [...arr].sort(() => Math.random() - 0.5);
+    return shuffledArray.slice(0, num);
+}
+
+const questionsData = [
+    {   
+        type: 'emotional',
+        question: 'How do you feel about our website design?',
+        dummyText: ['Very Unhappy', 'Unhappy', 'Neutral', 'Happy', 'Very Happy']
+    },
+    {   
+        type: 'emotional',
+        question: 'How satisfied are you with our customer service?',
+        dummyText: ['Very Unsatisfied', 'Unsatisfied', 'Neutral', 'Satisfied', 'Very Satisfied']
+    },
+    {   
+        type: 'emotional',
+        question: 'How likely are you to recommend our services to a friend?',
+        dummyText: ['Not Likely', 'Unlikely', 'Neutral', 'Likely', 'Very Likely']
+    },
+    {   
+        type: 'emotional',
+        question: 'How would you rate your overall experience with us?',
+        dummyText: ['Very Poor', 'Poor', 'Average', 'Good', 'Excellent']
+    },
+    {   
+        type: 'statistical',
+        question: 'How many times have you visited our website in the past month?',
+        dummyText: ['0-1', '2-5', '6-10', '11-20', '21+']
+    },
+    {   
+        type: 'statistical',
+        question: 'How many products or services have you purchased from us?',
+        dummyText: ['0', '1-2', '3-4', '5-6', '7+']
+    },
+    {   
+        type: 'statistical',
+        question: 'How long did it take for you to find what you were looking for on our website?',
+        dummyText: ['< 1 min', '1-5 min', '6-15 min', '16-30 min', '> 30 min']
+    },
+    {   
+        type: 'statistical',
+        question: 'On a scale of 1-5, how would you rate the ease of navigation on our website?',
+        dummyText: ['1', '2', '3', '4', '5']
+    },
+];
+
+
+const selectedQuestions = getRandomQuestions(questionsData, 4, 4);
+const questionsContainer = document.querySelector('.questions');
+createQuestionElements(questionsContainer, selectedQuestions);
+
+function createQuestionElements(parent, questions) {
+    questions.forEach((question, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        if (index === 0) questionElement.classList.add('active');
+
+        const h3 = document.createElement('h3');
+        h3.textContent = `Question ${index + 1}:`;
+        questionElement.appendChild(h3);
+
+        const p = document.createElement('p');
+        p.textContent = question.question;
+        questionElement.appendChild(p);
+
+        const sliderContainer = document.createElement('div');
+        sliderContainer.classList.add('slider-container');
+        questionElement.appendChild(sliderContainer);
+
+        const input = document.createElement('input');
+        input.type = 'range';
+        input.min = '1';
+        input.max = '5';
+        input.value = '1';
+        input.classList.add('slider');
+        input.id = `answerSlider${index + 1}`;
+        sliderContainer.appendChild(input);
+
+        const ul = document.createElement('ul');
+        ul.classList.add('slider-labels');
+        sliderContainer.appendChild(ul);
+
+        question.dummyText.forEach((text, i) => {
+            const li = document.createElement('li');
+            li.setAttribute('data-text', text);
+            // Replace the following line with your own image code
+            li.textContent = `Image ${i + 1}`;
+            ul.appendChild(li);
+        });
+
+        parent.appendChild(questionElement);
+    });
+}
+
+function showQuestion(index) {
+    questionsContainer.querySelectorAll('.question').forEach((question, i) => {
+        if (i === index) {
+            question.classList.add('active');
+        } else {
+            question.classList.remove('active');
+        }
+    });
+}
+
+function nextQuestion() {
+    if (currentQuestion < selectedQuestions.length - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+    }
+}
+
+function prevQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+    }
+}
+
+function updateSliderColor(slider) {
+    let percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    let colorLeft = "#ff69b4";
+    let colorRight = "#ffb6c1";
+    let background = `linear-gradient(90deg, ${colorLeft} ${percentage}%, ${colorRight} ${percentage}%)`;
+    slider.style.background = background;
+}
+
+document.querySelectorAll('.slider').forEach(slider => {
+    updateSliderColor(slider);
+    slider.addEventListener('input', () => updateSliderColor(slider));
+});
+
+showQuestion(currentQuestion);
