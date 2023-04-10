@@ -3,6 +3,10 @@
 
 {% block content %}
 	
+	
+	{% if student_classroom_check %}
+	<h2>HI THIS IS {{ student_classroom }} </h2>
+	{% else %}
 	<div class="content-section">	
 		<form method="POST" enctype="multipart/form-data"> 
 			{% csrf_token %}     

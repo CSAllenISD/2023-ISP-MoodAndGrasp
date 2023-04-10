@@ -60,6 +60,8 @@ def classes(request):
 		code = Profile.objects.get(user=request.user)
 	context = {
 		'c_form': c_form,
+		'student_classroom':code.student_classroom.first(),
+		'student_classroom_check':code.student_classroom.exists()
 	}
 	return render(request, 'users/classes.html', context)
 

@@ -1,0 +1,41 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <h1>Slider Form</h1>
+    
+      <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+          <div class="content">
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label">{{ field.label }}</label>
+                <div class="col-md-8">
+                    <input type="range" min="1" max="5" value="3" class="slider">
+                    <div class="slider-images-container">
+                      <img class="slider-image" src="../../media/angry.png" width="50" height="50" data-position="1">
+                      <p>mad</p>
+                      <img class="slider-image" src="../../media/bored-eyeroll-distracted.png" width="50" height="50" data-position="2">
+                      <p>a little mad</p>
+                      <img class="slider-image" src="../../media/meh.png" width="50" height="50" data-position="3">
+                      <p>meh</p>
+                      <img class="slider-image" src="../../media/good.png" width="50" height="50" data-position="4">
+                      <p>good</p>
+                      <img class="slider-image" src="../../media/happy.png" width="50" height="50" data-position="5">
+                      <p>great</p>
+
+                  </div>
+                </div>
+            </div>
+          </div>
+          {% endfor %}
+          <button type="submit">Submit</button>
+      </form>
+      <div id="slider-value"></div>
+    <script>
+        function sliderVal(value) {
+            var output = document.getElementById("slider-value");
+            output.innerHTML = "Slider Value: " + value;
+        }
+    </script>
+{% endblock %}

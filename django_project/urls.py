@@ -20,6 +20,7 @@ from users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
 from chartjs import views
+from chartjs.views import SurveyCreateView, SurveyResultsView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', views.ChartData.as_view()),
@@ -33,8 +34,9 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
     path('classes/', user_views.classes, name='classes'),
-    path('', include('home.urls')),
-
+    path('survey/', SurveyCreateView.as_view(), name='survey'),
+    path('results/', SurveyResultsView.as_view(), name='survey_results'),
+    path('', include('home.urls'), name='front_page'),
 
 ]
 
