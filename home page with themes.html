@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      * { 
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+          line-height: 1.6;
+          color: #333;
+      }
+
+      /* Hero Section */
+      .hero {
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          background: linear-gradient(135deg, #f06292, #5c6bc0);
+          position: relative;
+      }
+
+      .hero-text {
+          text-align: center;
+          color: white;
+          background: rgba(0, 0, 0, 0.7);
+          padding: 2rem;
+          border-radius: 10px;
+      }
+
+      .hero-text h1 {
+          font-size: 4rem;
+          margin-bottom: 1rem;
+      }
+
+      .hero-text p {
+          font-size: 1.5rem;
+      }
+
+      .hero-text .start-btn {
+          display: inline-block;
+          background: #f06292;
+          color: white;
+          padding: 0.5rem 2rem;
+          margin-top: 1rem;
+          font-size: 1.2rem;
+          border-radius: 5px;
+          cursor: pointer;
+          text-decoration: none;
+      }
+
+      /* Theme Selector */
+      .theme-selector {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+      }
+
+      .theme-selector label {
+          color: white;
+          font-size: 1.2rem;
+          margin-right: 1rem;
+      }
+
+      .theme-selector select {
+          font-size: 1rem;
+          padding: 0.25rem;
+          cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="theme-selector">
+        <label for="themes">Choose a theme:</label>
+        <select id="themes" onchange="changeTheme()">
+          <option value="gradient">Default</option>
+          <option value="https://i.imgur.com/7ZNgMYw.jpg">Theme 1</option>
+          <option value="https://i.imgur.com/UAWhrxV.jpg">Theme 2</option>
+          <option value="https://i.imgur.com/GKqHam3.jpg">Theme 3</option>
+          <option value="https://i.imgur.com/tsFusTT.jpg">Theme 4</option>
+          <option value="https://i.imgur.com/mAUE8dd.jpg">Theme 5</option>
+          <option value="https://i.imgur.com/NGfLpz4.jpg">Theme 6</option>
+          <option value="https://i.imgur.com/OCdKmAk.jpg">Theme 7</option>
+        </select>
+      </div>
+      <div class="hero-text">
+        <h1>Mood and Grasp</h1>
+        <p>Maximize your potential, master your emotions</p>
+        <a href="#" class="start-btn">Start</a>
+      </div>
+      </section>
+
+    <script>
+      function changeTheme() {
+          const themeSelector = document.getElementById('themes');
+          const selectedTheme = themeSelector.value;
+          const heroSection = document.getElementById('hero');
+
+          if (selectedTheme === "gradient") {
+              heroSection.style.background = "linear-gradient(135deg, #f06292, #5c6bc0)";
+          } else {
+              heroSection.style.backgroundImage = `url('${selectedTheme}')`;
+              heroSection.style.backgroundSize = "cover";
+              heroSection.style.backgroundPosition = "center";
+              heroSection.style.backgroundRepeat = "no-repeat";
+          }
+      }
+    </script>
+  </body>
+  </html>
