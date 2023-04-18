@@ -44,17 +44,20 @@ body {
 
 /* Content Section */
 .content {
-    width: 90%;
+    width: 100vw;
     margin: 5rem auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     background-color: #f06292;
     padding: 2rem;
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .content-inner {
+    width: 48%;
     margin-bottom: 2rem;
 }
 
@@ -78,7 +81,7 @@ body {
 
 /* Team Section */
 .team {
-    width: 90%;
+    width: 100vw;
     margin: 5rem auto;
     text-align: center;
 }
@@ -89,15 +92,17 @@ body {
 }
 
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .team-member {
+    width: 23%;
     background-color: white;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin: 1rem 0;
     padding: 1.5rem;
     transition: 0.3s;
@@ -118,4 +123,12 @@ body {
 
 .team-member p {
     font-size: 1rem;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .content-inner, .team-member {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
 }
