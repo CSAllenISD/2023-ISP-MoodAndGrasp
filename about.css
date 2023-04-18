@@ -46,16 +46,15 @@ body {
 .content {
     width: 90%;
     margin: 5rem auto;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 2rem;
     background-color: #f06292;
     padding: 2rem;
     border-radius: 10px;
 }
 
 .content-inner {
-    flex: 1;
-    min-width: 300px;
     margin-bottom: 2rem;
 }
 
@@ -90,18 +89,16 @@ body {
 }
 
 .team-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1rem;
 }
 
 .team-member {
-    flex: 1;
-    min-width: 200px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 1rem;
+    margin: 1rem 0;
     padding: 1.5rem;
     transition: 0.3s;
 }
