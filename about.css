@@ -1,4 +1,4 @@
-* { 
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -46,12 +46,17 @@ body {
 .content {
     width: 90%;
     margin: 5rem auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
     background-color: #f06292;
     padding: 2rem;
     border-radius: 10px;
+}
+
+.content-inner {
+    flex: 1;
+    min-width: 300px;
+    margin-bottom: 2rem;
 }
 
 .content-inner h2 {
@@ -85,16 +90,18 @@ body {
 }
 
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 2rem;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .team-member {
+    flex: 1;
+    min-width: 200px;
     background-color: white;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
     padding: 1.5rem;
     transition: 0.3s;
 }
