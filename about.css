@@ -35,7 +35,6 @@ body {
     font-size: 1.5rem;
 }
 
-
 .centered-image {
     display: block;
     margin: 2rem auto;
@@ -46,6 +45,7 @@ body {
 /* Content Section */
 .content {
     width: 90%;
+    max-width: 1200px;
     margin: 5rem auto;
     display: flex;
     justify-content: space-between;
@@ -82,6 +82,7 @@ body {
 /* Team Section */
 .team {
     width: 90%;
+    max-width: 1200px;
     margin: 5rem auto;
     text-align: center;
 }
@@ -126,7 +127,13 @@ body {
 }
 
 /* Media Queries */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+    .content-inner, .team-member {
+        width: 48%;
+    }
+}
+
+@media (max-width: 768px) {
     .content-inner, .team-member {
         width: 100%;
         margin-bottom: 2rem;
