@@ -48,4 +48,4 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
 
 def about(request):
-	return render(request, 'home/about.html', {'title': 'About'})
+	return render(request, 'home/about.html', {'title': 'About', 'about': True})

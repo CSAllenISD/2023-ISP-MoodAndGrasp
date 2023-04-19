@@ -7,6 +7,8 @@ from django.forms import ValidationError
 from django.contrib.auth.models import User
 from django import forms
 from .models import Profile, Classroom
+from chartjs.models import Student
+import os
 def register(request):
 	if request.method == 'POST':
 		form = UserRegisterForm(request.POST)
@@ -49,7 +51,7 @@ def classes(request):
 		if c_form.is_valid():
 			if Classroom.objects.filter(class_code=c_form.cleaned_data.get('user_class_code')).exists():
 				c_form.save()
-				code = Profile.objects.get(user=request.user)
+				code = Student.objects.get(user=request.user)
 				code.student_classroom.set(Classroom.objects.filter(class_code=c_form.cleaned_data.get('user_class_code')))
 				messages.success(request, f'You have joined the classroom!')
 				return redirect('front_page')
@@ -57,7 +59,7 @@ def classes(request):
 				messages.error(request, f'No Classroom found with that code', extra_tags='error')
 	else:
 		c_form = ClassJoinForm(request.POST, instance=request.user.profile)
-		code = Profile.objects.get(user=request.user)
+		code = Student.objects.get(user=request.user)
 	context = {
 		'c_form': c_form,
 		'student_classroom':code.student_classroom.first(),

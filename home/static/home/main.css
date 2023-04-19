@@ -4,6 +4,13 @@ ul {
   margin: 0;
 }
 
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
 .error {
   color: #d65c5c;
 }
@@ -22,6 +29,13 @@ ul {
 
 .site-header .navbar-nav .nav-link.active {
   font-weight: 500;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
 }
 
 body {
@@ -254,11 +268,11 @@ nav a {
 
 
 .slider-image {
-  position: absolute;
+  position: relative;
   bottom: -50px;
   left: calc(var(--slider-position) * var(--slider-gap) - var(--slider-image-width) / 2);
   width: var(--slider-image-width);
-  transform: translateX(-260%);
+  transform: translateX(-200%);
   z-index: 1;
 }
 

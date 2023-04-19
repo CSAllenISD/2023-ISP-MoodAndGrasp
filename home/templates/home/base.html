@@ -11,10 +11,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    {% if about %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/about.css' %}">
+<!--    <script src="{% static 'home/script.js' %}" defer></script> -->
+    {% else %}
     <link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
-    <script src="{% static 'home/script.js' %}" defer></script>
-
+    {% endif %}
 	{% if title %}
 		<title>Django Site - {{ title }}</title>
 	{% else %}
@@ -44,8 +46,13 @@
       </div>
       <h1>Mood and Grasp</h1>
 </header>
+{% if about %}
+<div></div>
+{% else %}
 <main role="main" class="container">
   <div class="row">
+{% endif %}
+  
     <div class="col-md-8">
     	{% if messages %}
     		{% for message in messages %}
@@ -58,6 +65,8 @@
       {% block content %}{% endblock %}
      </div>
     </div>
+}
+}
     
 </main>
 	

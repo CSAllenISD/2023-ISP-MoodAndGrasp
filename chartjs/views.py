@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.views.generic.edit import FormView
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, HTML, Field
-from django.http import JsonResponse
+from crispy_forms.layout import Layout, HTML, Field, Submit
+from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
@@ -42,57 +44,99 @@ class HomeView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'chartjs/index.html')
 
-def slider_view(request):
-    if request.method == 'POST':
-        form = SliderForm(request.POST)
-        if form.is_valid():
-            slider_value = form.cleaned_data['slider']
-            slider_value.save()
-            # Do something with the slider value, like save it to a database
-            return redirect('success')
-    else:
-        form = SliderForm()
+class SliderForm(SurveyForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name in ['mood', 'grasp', 'question']:
+            self.fields.pop(field_name)
 
-    return render(request, 'chartjs/survey.html', {'form': form})
-
-def success_view(request):
-    return render(request, 'users/classroom.html')
-
-class SurveyCreateView(CreateView):
+class SurveyCreateView(LoginRequiredMixin, CreateView):
     model = SurveyQuestion
+    form_class = SurveyForm
     template_name = 'chartjs/survey.html'
-    form_class = SurveyQuestionForm
+    success_url = reverse_lazy('front_page')
+    def get_context_data(self, **kwargs):
+        mood_question = SurveyQuestion.objects.filter(mood_question=True).order_by("?")[:4]
+        grasp_question = SurveyQuestion.objects.filter(grasp_question=True).order_by("?")[:4]
+        
+        context = super().get_context_data(**kwargs)
+        context['mood_questions'] = mood_question
+        context['grasp_questions'] = grasp_question
+
+        return context
+
+    def form_valid(self, form):
+        survey = form.save(commit=False)
+        survey.student = self.request.user.student
+        survey.save()
+#        change.Mood = survey.cleaned_data.get('Mood')
+#        change.Mood = survey.cleaned_data.get('Grasp')
+        return super().form_valid(form)
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # Process form cleaned data
+            change = Student.objects.get(user=self.request.user)
+            print(self.request.POST.get('mood'))
+            change.Mood = request.GET.get('mood', None)
+            change.Grasp = request.GET.get('grasp', None)
+            return HttpResponseRedirect('../classes')
+        else:
+            print(form)
+        return render(request, self.template_name, {'form': form})
+
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+@login_required
+def survey(request):
+    if request.POST and is_ajax(request=request):
+        s_form = SurveyForm(request.POST, instance=request.user.student)
+        if s_form.is_valid():
+            s_form.save()
+            change = Student.objects.get(user=request.user)
+            print(request.POST.get('mood', None))
+            change.Mood = request.POST.get('mood', None)
+            change.Grasp = request.POST.get('grasp', None)
+            messages.success(request, f'Your data have been recorded!!')
+            return JsonResponse({"mood":change.Mood, "grasp":change.Grasp}, status=200)
+        else:
+            messages.error(request, f'Something came up idk what happend', extra_tags='error')
+            return JsonResponse(status=400)
+    else:
+        s_form = SurveyForm(request.POST, instance=request.user.student)
+        change = Student.objects.get(user=request.user)
+
+    mood_question = SurveyQuestion.objects.filter(mood_question=True).order_by("?")[:4]
+    grasp_question = SurveyQuestion.objects.filter(grasp_question=True).order_by("?")[:4]
+
+    context = {
+        'mood_questions': mood_question,
+        'grasp_questions': grasp_question,
+        'form': s_form
+    }
+    return render(request, 'chartjs/survey.html', context)
+
+
+
+class SurveyFormView(FormView):
+    template_name = 'chartjs/survey.html'
+    form_class = SurveyForm
     success_url = reverse_lazy('survey_results')
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        questions = list(SurveyQuestion.objects.all())
-        random.shuffle(questions)
-        kwargs.update({'questions': questions[:8], 'initial': {'question': 'sample question'}})
-        return kwargs
+    def form_valid(self, form):
+        user = self.request.user
+        mood = user.mood
+        grasp = user.grasp
+        mood_change = form.cleaned_data['mood_slider']
+        grasp_change = form.cleaned_data['grasp_slider']
+        mood += mood_change
+        grasp += grasp_change
+        user.mood = mood
+        user.grasp = grasp
+        user.save()
+        return super().form_valid(form)
 
-class SurveyResultsView(View):
-    def get(self, request, *args, **kwargs):
-        survey_responses = SurveyResponse.objects.all()
-        return render(request, 'chartjs/survey_results.html', {'survey_responses': survey_responses})
-
-class SliderView(FormView):
-    form_class = SurveyQuestionForm
-    template_name = 'chartjs/survey.html'
-    success_url = reverse_lazy('success')
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['questions'] = SurveyQuestion.objects.all()
-        return kwargs
-
-def survey_view(request):
-    questions = SurveyQuestion.objects.all()
-    form = SurveyQuestionForm(questions=questions)
-    if request.method == 'POST':
-        form = SurveyQuestionForm(request.POST, questions=questions)
-        if form.is_valid():
-            form.save()
-            # do something with the form data
-            return redirect('success')
-    return render(request, 'survey.html', {'form': form})
+def testing(request):
+    result = request.GET.get('result', None)
+    return JsonResponse()
