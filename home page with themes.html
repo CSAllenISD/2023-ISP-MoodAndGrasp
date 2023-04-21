@@ -1,3 +1,4 @@
+
 {% extends "home/base.html" %}
 {% block content %}
 
@@ -37,9 +38,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-      
-            background-size: cover;
-           
+            
         }
 
         .hero-text {
@@ -94,40 +93,49 @@
 <body>
     <!-- Hero Section -->
     <section id="hero" class="hero">
-        <div class="theme-selector">
-            <label for="themes">Choose a theme:</label>
-            <select id="themes" onchange="changeTheme()">background-image: url('/path/to/image.jpg'); background-size: cover;
-                <option value="gradient">Default Gradient</option>
-                <option value="https://i.imgur.com/bCuN1Qe.jpg">Beach</option>
-                <option value="https://i.imgur.com/IRWpgHW.jpg">Winter</option>
-                <option value="https://i.imgur.com/Vjlqlje.jpg">Castle</option>
-                <option value="https://i.imgur.com/SAtaB2R.jpg">Ocean</option>
-                <option value="https://i.imgur.com/JtWgTkH.jpg">Space</option>
-                <option value="https://i.imgur.com/o7uPgUr.jpg">Haunted</option>
-                <option value="https://i.imgur.com/CJLYORc.jpg">Mystic</option>
-            </select>
-        </div>
-        <div class="hero-text">
-            <h1>Mood and Grasp</h1>
-            <p>Maximize your potential, master your emotions</p>
-            <a href="#"            class="start-btn">Start</a>
-          </div>
-      </section>
-      <script>
-          function changeTheme() {
-              const themeSelector = document.getElementById('themes');
-              const selectedTheme = themeSelector.value;
-              const heroSection = document.getElementById('hero');
-      
-              if (selectedTheme === "gradient") {
-                  heroSection.style.background = "linear-gradient(135deg, #f06292, #5c6bc0)";
-              } else {
-                  heroSection.style.backgroundImage = `url('${selectedTheme}')`;
-                  heroSection.style.backgroundSize = "cover";
-                  heroSection.style.backgroundPosition = "center";
-                  heroSection.style.backgroundRepeat = "no-repeat";
-              }
-          }
-      </script>
+      <div class="theme-selector">
+          <label for="themes">Choose a theme:</label>
+          <select id="themes" onchange="changeTheme()">
+              <option value="gradient">Default Gradient</option>
+              <option value="https://i.imgur.com/bCuN1Qe.jpg">Beach</option>
+              <option value="https://i.imgur.com/IRWpgHW.jpg">Winter</option>
+              <option value="https://i.imgur.com/Vjlqlje.jpg">Castle</option>
+              <option value="https://i.imgur.com/SAtaB2R.jpg">Ocean</option>
+              <option value="https://i.imgur.com/JtWgTkH.jpg">Space</option>
+              <option value="https://i.imgur.com/o7uPgUr.jpg">Haunted</option>
+              <option value="https://i.imgur.com/CJLYORc.jpg">Mystic</option>
+          </select>
+      </div>
+      <div class="hero-text">
+          <h1>Mood and Grasp</h1>
+          <p>Maximize your potential, master your emotions</p>
+          <a href="#" class="start-btn">Start</a>
+      </div>
+  </section>
+  
+  
+  <script>
+    function changeTheme() {
+        const themeSelector = document.getElementById('themes');
+        const selectedTheme = themeSelector.value;
+        const bodyElement = document.body;
+
+        if (selectedTheme === "gradient") {
+            bodyElement.style.background = "linear-gradient(135deg, #f06292, #5c6bc0)";
+        } else {
+            bodyElement.style.backgroundImage = `url('${selectedTheme}')`;
+            bodyElement.style.backgroundSize = "cover";
+            bodyElement.style.backgroundPosition = "center";
+            bodyElement.style.backgroundRepeat = "no-repeat";
+        }
+    }
+</script>
   </body>
   </html>
+  
+
+  
+
+
+
+{% endblock content %}
