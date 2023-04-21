@@ -6,7 +6,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 def front_page(request):
 	context = {
-		'announcements': Announcements.objects.all()
+		'announcements': Announcements.objects.all(),
+		'home': True
 	}
 	return render(request, 'home/home.html', context)
 

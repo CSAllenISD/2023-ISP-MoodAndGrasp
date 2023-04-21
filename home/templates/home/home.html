@@ -4,126 +4,138 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-      * { 
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: 'Poppins', sans-serif;
-      }
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
 
-      body {
-          line-height: 1.6;
-          color: #333;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-      /* Hero Section */
-      .hero {
-          width: 100%;
-          height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          background: linear-gradient(135deg, #f06292, #5c6bc0);
-          position: relative;
-      }
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f06292, #5c6bc0);
+          
+        }
 
-      .hero-text {
-          text-align: center;
-          color: white;
-          background: rgba(0, 0, 0, 0.7);
-          padding: 2rem;
-          border-radius: 10px;
-      }
+        /* Hero Section */
+        .hero {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+        }
 
-      .hero-text h1 {
-          font-size: 4rem;
-          margin-bottom: 1rem;
-      }
+        .hero-text {
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+        }
 
-      .hero-text p {
-          font-size: 1.5rem;
-      }
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
 
-      .hero-text .start-btn {
-          display: inline-block;
-          background: #f06292;
-          color: white;
-          padding: 0.5rem 2rem;
-          margin-top: 1rem;
-          font-size: 1.2rem;
-          border-radius: 5px;
-          cursor: pointer;
-          text-decoration: none;
-      }
+        .hero-text p {
+            font-size: 1.5rem;
+        }
 
-      /* Theme Selector */
-      .theme-selector {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-      }
+        .hero-text .start-btn {
+            display: inline-block;
+            background: #f06292;
+            color: white;
+            padding: 0.5rem 2rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
-      .theme-selector label {
-          color: white;
-          font-size: 1.2rem;
-          margin-right: 1rem;
-      }
+        /* Theme Selector */
+        .theme-selector {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+      
+        .theme-selector label {
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
 
-      .theme-selector select {
-          font-size: 1rem;
-          padding: 0.25rem;
-          cursor: pointer;
-      }
+        .theme-selector select {
+            font-size: 1rem;
+            padding: 0.25rem;
+            cursor: pointer;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <!-- Hero Section -->
     <section id="hero" class="hero">
       <div class="theme-selector">
-        <label for="themes">Choose a theme:</label>
-        <select id="themes" onchange="changeTheme()">
-          <option value="gradient">Default</option>
-          <option value="https://i.imgur.com/7ZNgMYw.jpg">Theme 1</option>
-          <option value="https://i.imgur.com/UAWhrxV.jpg">Theme 2</option>
-          <option value="https://i.imgur.com/GKqHam3.jpg">Theme 3</option>
-          <option value="https://i.imgur.com/tsFusTT.jpg">Theme 4</option>
-          <option value="https://i.imgur.com/mAUE8dd.jpg">Theme 5</option>
-          <option value="https://i.imgur.com/NGfLpz4.jpg">Theme 6</option>
-          <option value="https://i.imgur.com/OCdKmAk.jpg">Theme 7</option>
-        </select>
+          <label for="themes">Choose a theme:</label>
+          <select id="themes" onchange="changeTheme()">
+              <option value="gradient">Default Gradient</option>
+              <option value="https://i.imgur.com/bCuN1Qe.jpg">Beach</option>
+              <option value="https://i.imgur.com/IRWpgHW.jpg">Winter</option>
+              <option value="https://i.imgur.com/Vjlqlje.jpg">Castle</option>
+              <option value="https://i.imgur.com/SAtaB2R.jpg">Ocean</option>
+              <option value="https://i.imgur.com/JtWgTkH.jpg">Space</option>
+              <option value="https://i.imgur.com/o7uPgUr.jpg">Haunted</option>
+              <option value="https://i.imgur.com/CJLYORc.jpg">Mystic</option>
+          </select>
       </div>
       <div class="hero-text">
-        <h1>Mood and Grasp</h1>
-        <p>Maximize your potential, master your emotions</p>
-        <a href="#" class="start-btn">Start</a>
+          <h1>Mood and Grasp</h1>
+          <p>Maximize your potential, master your emotions</p>
+          <a href="#" class="start-btn">Start</a>
       </div>
-      </section>
+  </section>
+  
+  
+  <script>
+    function changeTheme() {
+        const themeSelector = document.getElementById('themes');
+        const selectedTheme = themeSelector.value;
+        const bodyElement = document.body;
 
-    <script>
-      function changeTheme() {
-          const themeSelector = document.getElementById('themes');
-          const selectedTheme = themeSelector.value;
-          const heroSection = document.getElementById('hero');
-
-          if (selectedTheme === "gradient") {
-              heroSection.style.background = "linear-gradient(135deg, #f06292, #5c6bc0)";
-          } else {
-              heroSection.style.backgroundImage = `url('${selectedTheme}')`;
-              heroSection.style.backgroundSize = "cover";
-              heroSection.style.backgroundPosition = "center";
-              heroSection.style.backgroundRepeat = "no-repeat";
-          }
-      }
-    </script>
+        if (selectedTheme === "gradient") {
+            bodyElement.style.background = "linear-gradient(135deg, #f06292, #5c6bc0)";
+        } else {
+            bodyElement.style.backgroundImage = `url('${selectedTheme}')`;
+            bodyElement.style.backgroundSize = "cover";
+            bodyElement.style.backgroundPosition = "center";
+            bodyElement.style.backgroundRepeat = "no-repeat";
+        }
+    }
+</script>
   </body>
   </html>
+  
+
+  
+
 
 
 {% endblock content %}

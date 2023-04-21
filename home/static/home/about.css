@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #000;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Hero Section */
+.hero {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(135deg, #f06292, #5c6bc0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-text {
+    text-align: center;
+    color: white;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.hero-text p {
+    font-size: 1.5rem;
+}
+
+.centered-image {
+    display: block;
+    margin: 2rem auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Content Section */
+.content {
+    width: 100vw;
+    margin: 5rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #f06292;
+    padding: 2rem;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.content-inner {
+    width: 48%;
+    margin-bottom: 2rem;
+}
+
+.content-inner h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.content-inner p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.content-inner img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Team Section */
+.team {
+    width: 100vw;
+    margin: 5rem auto;
+    text-align: center;
+}
+
+.team h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    width: 23%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 1rem 0;
+    padding: 1.5rem;
+    transition: 0.3s;
+}
+
+.team-member img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.team-member h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p {
+    font-size: 1rem;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .content-inner, .team-member {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-right: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: pink;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn {
+    background-color: black;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover {
+    background-color: white;
+    color: black;
+}
+.additional-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.additional-input p {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.additional-input textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    resize: none;
+    font-size: 16px;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+.site-header .navbar-nav .nav-link {
+    color: #FFFFFF;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #C9A9A6;
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    height: 80px;
+    position: relative;
+    padding: 0 20px;
+}
+
+header h1 {
+    color: pink;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+  

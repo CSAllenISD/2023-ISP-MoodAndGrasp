@@ -1,0 +1,15 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ mood_questions }}
+    {% for question in mood_questions %}
+      <div class="form-group">
+        <label for="{{ question.id }}">{{ question.text }}</label>
+        <input type="range" class="form-control-range" id="{{ question.id }}" name="{{ question.id }}" min="1" max="10">
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}

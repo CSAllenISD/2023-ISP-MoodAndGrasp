@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Field, Submit
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
@@ -85,12 +85,10 @@ class SurveyCreateView(LoginRequiredMixin, CreateView):
             print(form)
         return render(request, self.template_name, {'form': form})
 
-def is_ajax(request):
-    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
-
 @login_required
 def survey(request):
-    if request.POST and is_ajax(request=request):
+    student = Student.objects.all()
+    if request.POST:
         s_form = SurveyForm(request.POST, instance=request.user.student)
         if s_form.is_valid():
             s_form.save()
@@ -113,11 +111,24 @@ def survey(request):
     context = {
         'mood_questions': mood_question,
         'grasp_questions': grasp_question,
-        'form': s_form
+        'form': s_form,
+        'student': student
     }
     return render(request, 'chartjs/survey.html', context)
 
+def surveySubmit(request, mood=int, grasp=int):
+    s = Student.objects.get(user=request.user)
+    s.Mood = mood
+    s.Grasp = grasp
+    s.save()
 
+    context = {
+        'mood_average': mood,
+        'grasp_average': grasp,
+
+
+    }
+    return render(request, 'chartjs/surveySubmit.html', context)
 
 class SurveyFormView(FormView):
     template_name = 'chartjs/survey.html'

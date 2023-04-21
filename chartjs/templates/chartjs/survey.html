@@ -50,44 +50,14 @@ window.onload = function() {
       graspInput.value = parseInt(graspInput.value) + graspValue;
       
     });
-
-    $.ajax({
-      type: "POST",
-      url: '/survey',
-      data: {
-        "mood": 5,
-        "grasp": 10
-      },
-      dataType: "json",
-      success: function(data) {
-        alert("successfull")
-      },
-      failure: function(error) {
-        alert("failure");
-      }
-
-    });
+    mood = 5;
+    grasp = 10;
+    function redirect() {
+      location.href = '/survey/${mood}/${grasp}';
+    }
 
     }
   };
-  $.ajax({
-      type: "POST",
-      url: '/survey',
-      data: {
-        "mood": 5,
-        "grasp": 10
-      },
-      dataType: "json",
-      success: function(data) {
-        alert("successfull")
-      },
-      failure: function(error) {
-        alert("failure");
-      }
-
-    });
-
-
     </script>
     <h1>Slider Form</h1>
     <form method="POST" action="{% url 'survey' %}">
@@ -133,7 +103,7 @@ window.onload = function() {
       </div>
         {% endfor %}
 
-          <button class="btn btn-outline-info" type="submit">Submit</button>
+          <button class="btn btn-outline-info" type="submit" onclick="redirect()">Submit</button>
       </form>
       <div id="slider-value"></div>
     <script>

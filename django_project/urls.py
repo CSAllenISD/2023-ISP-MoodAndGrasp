@@ -35,6 +35,7 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
     path('classes/', user_views.classes, name='classes'),
     path('survey/', views.survey, name='survey'),
+    path('survey/<int:mood>/<int:grasp>', views.surveySubmit, name='surveySubmit'),
     path('', include('home.urls'), name='front_page'),
 
 ]
