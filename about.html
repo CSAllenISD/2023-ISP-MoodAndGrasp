@@ -1,6 +1,5 @@
-{% extends 'home/base.html' %}
+{% extends "home/base.html" %}
 {% load static %}
-
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-   <link rel="stylesheet" type="text/css" href="{% static 'home/about.css' %}">
   </head>
   <body>
     <!-- Hero Section -->
@@ -21,50 +19,51 @@
       </div>
     </section>
 
-    <div class="container">
-      <!-- Content Section -->
-      <section class="content">
-        <div class="content-inner">
-          <h2>What is it?</h2>
-          <p>A mood and grasp graph is a practice to gather feedback on students emotions and grasp of concepts and deliver in-the-moment supports; typically done via surveys. Weekly or daily SEL check-ins not only elevate student voice, they can also help students gain awareness of their emotions and work on self-awareness, social awareness, and responsible decision-making.
-          </p>
-          <img src="https://i.imgur.com/GbZYliY.png" alt="Dummy Image 1">
-        </div>
-        <div class="content-inner">
-          <h2>The Benefits</h2>
-          <p>Extensive research has shown that students who participate in SEL programs demonstrate 11% gains in academics, improved classroom behavior, better stress management, and higher attendance. As the body of research on social-emotional learning grows, district and school leaders are focusing on infusing SEL into the classroom through different programs and activities.
-          </p>
-          <img src="https://i.imgur.com/Z9L3I7b.png" alt="Dummy Image 2">
-        </div>
-      </section>
+    <!-- Content Section -->
+    <section class="content">
+      <div class="content-inner">
+        <h2>What is it?</h2>
+        <p>A mood and grasp graph is a practice to gather feedback on students emotions and grasp of concepts and deliver in-the-moment supports; typically done via surveys. Weekly or daily SEL check-ins not only elevate student voice, they can also help students gain awareness of their emotions and work on self-awareness, social awareness, and responsible decision-making.
+        </p>
+        <img src="https://i.imgur.com/GbZYliY.png" alt="Dummy Image 1">
+      </div>
+      <div class="content-inner">
+        <h2>The Benefits</h2>
+        <p>Extensive research has shown that students who participate in SEL programs demonstrate 11% gains in academics, improved classroom behavior, better stress management, and higher attendance. As the body of research on social-emotional learning grows, district and school leaders are focusing on infusing SEL into the classroom through different programs and activities.
+        </p>
+        <img src="https://i.imgur.com/Z9L3I7b.png" alt="Dummy Image 2">
+      </div>
+    </section>
 
-      <!-- Team Section -->
-      <section class="team">
-        <h2>Meet the Team</h2>
-        <div class="team-grid">
-          <!-- Add team members here -->
-          <div class="team-member">
-            <img src="https://i.imgur.com/0USRzrW.png" alt="Team Member 1">
-            <h3>Robel Abraham</h3>
-            <p>Development Engineer</p>
-          </div>
-          <div class="team-member">
-            <img src="https://i.imgur.com/h4ss5zN.png" alt="Team Member 2">
-            <h3>Nahom Tadele</h3>
-            <p>Project Manager/Front End</p>
-          </div>
-          <div class="team-member">
-            <img src="https://i.imgur.com/vHW19sj.png" alt="Team Member 3">
-            <h3>William Turner</h3>
-            <p>Development Engineer</p>
-          </div>
-          <div class="team-member">
-            <img src="https://i.imgur.com/8hB6Yi7.png" alt="Team Member 4">
-            <h3>Zephan Murshed</h3>
-            <p>Graphic Designer</p>
-          </div>
+    <!-- Team Section -->
+    <section class="team">
+      <h2>Meet the Team</h2>
+      <div class="team-grid">
+        <!-- Add team members here -->
+        <div class="team-member">
+          <img src="https://i.imgur.com/0USRzrW.png" alt="Team Member 1">
+          <h3>Robel Abraham</h3>
+          <p>Development Engineer</p>
         </div>
-      </section>
-    </div>
+        <div class="team-member">
+          <img src="https://i.imgur.com/h4ss5zN.png" alt="Team Member 2">
+          <h3>Nahom Tadele</h3>
+          <p>Project Manager/Front End</p>
+        </div>
+        <div class="team-member">
+          <img src="https://i.imgur.com/vHW19sj.png" alt="Team Member 3">
+          <h3>William Turner</h3>
+          <p>Development Engineer</p>
+        </div>
+        <div class="team-member">
+          <img src="https://i.imgur.com/8hB6Yi7.png" alt="Team Member 4">
+          <h3>Zephan Murshed</h3>
+          <p>Graphic Designer</p>
+        </div>
+      </div>
+    </section>
 
-    {% endblock content %}
+    <script src="scripts.js"></script>
+  </body>
+</html>
+{% endblock content %}
