@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <h1>Survey Results</h1>
-  {% for question in questions %}
-    <h3>{{ question.question }}</h3>
-    <p>Average answer: {{ question.avg_answer }}</p>
-  {% endfor %}
-{% endblock %}

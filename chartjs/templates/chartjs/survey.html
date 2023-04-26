@@ -2,114 +2,104 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-    <script type="text/javascript">
-const slider = document.querySelector(".slider");
-const form = document.getElementById('survey-form');
-const moodImages = document.querySelectorAll(".slider-images-container img[data-position='mood']");
-const graspImages = document.querySelectorAll(".slider-images-container img[data-position='grasp']");
-const moodInput = document.getElementById('id_mood');
-const graspInput = document.getElementById('id_grasp');
-window.onload = function() {
-  if(slider && form){
-    slider.addEventListener("input", function () {
-      let moodValue = 0;
-      let graspValue = 0;
-      const sliderValue = this.value;
-
-      // Calculate mood value
-      if (sliderValue === 1) {
-        moodValue = -10;
-      } else if (sliderValue === 2) {
-        moodValue = -5;
-      } else if (sliderValue === 3) {
-        moodValue = 0;
-      } else if (sliderValue === 4) {
-        moodValue = 5;
-      } else if (sliderValue === 5) {
-        moodValue = 10;
-      }
-
-      // Calculate grasp value
-      if (sliderValue === 1) {
-        graspValue = -10;
-      } else if (sliderValue === 2) {
-        graspValue = -5;
-      } else if (sliderValue === 3) {
-        graspValue = 0;
-      } else if (sliderValue === 4) {
-        graspValue = 5;
-      } else if (sliderValue === 5) {
-        graspValue = 10;
-      }
-
-      // Set mood and grasp values to inputs
-
-
-
-      moodInput.value = parseInt(moodInput.value) + moodValue;
-      graspInput.value = parseInt(graspInput.value) + graspValue;
-      
-    });
-    mood = 5;
-    grasp = 10;
-    function redirect() {
-      location.href = '/survey/${mood}/${grasp}';
-    }
-
-    }
-  };
-    </script>
-    <h1>Slider Form</h1>
-    <form method="POST" action="{% url 'survey' %}">
-        {% csrf_token %}
-
-        {% for question in mood_questions %}
-            <div class="content">
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label">{{ question.question }}</label>
-                    <div class="col-md-8">
-                        <div class="slider-container">
-                            <input type="range" min="1" max="5" value="3" class="slider" oninput="sliderVal(value, {{ question.id }})">
-                            <div class="slider-images-container">
-                      <img class="slider-image" src="{% static question.emoji_1 %}" width="50" height="50" data-position="1" style= "left:-50px; top:1px;">
-                      <img class="slider-image" src="{% static question.emoji_2 %}" width="50" height="50" data-position="2" style= "left:25px; top:1px;">
-                      <img class="slider-image" src="{% static question.emoji_3 %}" width="50" height="50" data-position="3" style= "left:100px; top:1px;">
-                      <img class="slider-image" src="{% static question.emoji_4 %}" width="50" height="50" data-position="4" style= "left:175px; top:1px;">
-                      <img class="slider-image" src="{% static question.emoji_5 %}" width="50" height="50" data-position="5" style= "left:250px; top:1px;">
-                  </div>
-                </div>
-            </div>
+<h1>Slider Form</h1>
+  {% for question in mood_questions %}
+  <div class="content">
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">{{ question.question }}</label>
+      <div class="col-md-8">
+        <div class="slider-container">
+          <input type="range" min="1" max="5" value="3" class="slider" id="mood_{{ forloop.counter }}">
+          <div class="slider-images-container">
+            <img class="slider-image" src="{% static question.emoji_1 %}" width="50" height="50" data-position="1"
+              style="left:-50px; top:1px;">
+            <img class="slider-image" src="{% static question.emoji_2 %}" width="50" height="50" data-position="2"
+              style="left:25px; top:1px;">
+            <img class="slider-image" src="{% static question.emoji_3 %}" width="50" height="50" data-position="3"
+              style="left:100px; top:1px;">
+            <img class="slider-image" src="{% static question.emoji_4 %}" width="50" height="50" data-position="4"
+              style="left:175px; top:1px;">
+            <img class="slider-image" src="{% static question.emoji_5 %}" width="50" height="50" data-position="5"
+              style="left:250px; top:1px;">
           </div>
+        </div>
       </div>
-        {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
 
-        {% for question in grasp_questions %}
-            <div class="content">
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label">{{ question.question }}</label>
-                    <div class="col-md-8">
-                        <div class="slider-container">
-                            <input type="range" min="1" max="5" value="3" class="slider" oninput="sliderVal(value, {{ question.id }})">
-                            <div class="slider-images-container">
-                      <img class="slider-image" src="{% static question.emoji_1 %}" width="50" height="50" data-position="1" style= "left:-50px; top:1px;">
-                      <img class="slider-image" src="{% static question.emoji_2 %}" width="50" height="50" data-position="2" style= "left:25px; top:1px;">
-                      <img class="slider-image" src="{% static question.emoji_3 %}" width="50" height="50" data-position="3" style= "left:100px; top:1px;">
-                      <img class="slider-image" src="{% static question.emoji_4 %}" width="50" height="50" data-position="4" style= "left:175px; top:1px;">
-                      <img class="slider-image" src="{% static question.emoji_5 %}" width="50" height="50" data-position="5" style= "left:250px; top:1px;">
-                  </div>
-                </div>
-            </div>
+  {% for question in grasp_questions %}
+  <div class="content">
+    <div class="form-group row">
+      <label class="col-md-4 col-form-label">{{ question.question }}</label>
+      <div class="col-md-8">
+        <div class="slider-container">
+          <input type="range" min="1" max="5" value="3" class="slider" id="grasp_{{ forloop.counter }}">
+          <div class="slider-images-container">
+            <img class="slider-image" src="{% static question.emoji_1 %}" width="50" height="50" data-position="1"
+              style="left:-50px; top:1px;">
+            <img class="slider-image" src="{% static question.emoji_2 %}" width="50" height="50" data-position="2"
+              style="left:25px; top:1px;">
+            <img class="slider-image" src="{% static question.emoji_3 %}" width="50" height="50" data-position="3"
+              style="left:100px; top:1px;">
+            <img class="slider-image" src="{% static question.emoji_4 %}" width="50" height="50" data-position="4"
+              style="left:175px; top:1px;">
+            <img class="slider-image" src="{% static question.emoji_5 %}" width="50" height="50" data-position="5"
+              style="left:250px; top:1px;">
           </div>
+        </div>
       </div>
-        {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+  <button class="btn btn-outline-info" onclick="redirect()">Submit</button>
+<div id="slider-value"></div>
+<script type="text/javascript">
+  let moodValue = 0;
+  let graspValue = 0;
+  var valueTotal = 0;
+  function sliderVal(value) {
+    switch(value) {
+      case "1":
+        valueTotal = 0;
+        break;
+      case "2":
+        valueTotal = 1;
+        break;
+      case "3":
+        valueTotal = 2;
+        break;
+      case "4":
+        valueTotal = 3;
+        break;
+      case "5":
+        valueTotal = 4;
+        break;
+    }
+      return valueTotal
+    
+  }
+  function redirect() {
 
-          <button class="btn btn-outline-info" type="submit" onclick="redirect()">Submit</button>
-      </form>
-      <div id="slider-value"></div>
-    <script>
-        function sliderVal(value) {
-            var output = document.getElementById("slider-value");
-            output.innerHTML = "Slider Value: " + value;
-        }
-    </script>
+    mood_q1 = document.getElementById("mood_1");
+    mood_q2 = document.getElementById("mood_2");
+    mood_q3 = document.getElementById("mood_3");
+    mood_q4 = document.getElementById("mood_4");
+
+    grasp_q1 = document.getElementById("grasp_1");
+    grasp_q2 = document.getElementById("grasp_2");
+    grasp_q3 = document.getElementById("grasp_3");
+    grasp_q4 = document.getElementById("grasp_4");
+    var moodTotal = 0;
+    var graspTotal = 0;
+
+    moodTotal = sliderVal(mood_q1.value) + sliderVal(mood_q2.value) + sliderVal(mood_q3.value) + sliderVal(mood_q4.value); 
+    graspTotal = sliderVal(grasp_q1.value) + sliderVal(grasp_q2.value) + sliderVal(grasp_q3.value) + sliderVal(grasp_q4.value);
+    surveyRedirect = "/surveySubmit/(" + parseInt(moodTotal) + ")-(" + parseInt(graspTotal) + ")";
+    location.href = surveyRedirect;
+
+  }
+
+
+</script>
 {% endblock %}

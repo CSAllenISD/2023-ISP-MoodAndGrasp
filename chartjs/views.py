@@ -88,30 +88,12 @@ class SurveyCreateView(LoginRequiredMixin, CreateView):
 @login_required
 def survey(request):
     student = Student.objects.all()
-    if request.POST:
-        s_form = SurveyForm(request.POST, instance=request.user.student)
-        if s_form.is_valid():
-            s_form.save()
-            change = Student.objects.get(user=request.user)
-            print(request.POST.get('mood', None))
-            change.Mood = request.POST.get('mood', None)
-            change.Grasp = request.POST.get('grasp', None)
-            messages.success(request, f'Your data have been recorded!!')
-            return JsonResponse({"mood":change.Mood, "grasp":change.Grasp}, status=200)
-        else:
-            messages.error(request, f'Something came up idk what happend', extra_tags='error')
-            return JsonResponse(status=400)
-    else:
-        s_form = SurveyForm(request.POST, instance=request.user.student)
-        change = Student.objects.get(user=request.user)
-
     mood_question = SurveyQuestion.objects.filter(mood_question=True).order_by("?")[:4]
     grasp_question = SurveyQuestion.objects.filter(grasp_question=True).order_by("?")[:4]
 
     context = {
         'mood_questions': mood_question,
         'grasp_questions': grasp_question,
-        'form': s_form,
         'student': student
     }
     return render(request, 'chartjs/survey.html', context)
@@ -125,8 +107,6 @@ def surveySubmit(request, mood=int, grasp=int):
     context = {
         'mood_average': mood,
         'grasp_average': grasp,
-
-
     }
     return render(request, 'chartjs/surveySubmit.html', context)
 
