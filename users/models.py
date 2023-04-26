@@ -34,6 +34,19 @@ class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
+	THEMES = (
+        ('a', 'Beach'),
+        ('b', 'Winter'),
+        ('c', 'Castle'),
+        ('d', 'Ocean'),
+		('e', 'Space'),
+		('f', 'Haunted'),
+		('g', 'Mystic'),
+		('h', 'Default Gradient')
+    )
+
+	theme = models.CharField(max_length=1, choices=THEMES, default='h')
+	
 	def __str__(self):
 		return f'{self.user.username} Profile'
 

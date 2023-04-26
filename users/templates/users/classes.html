@@ -2,17 +2,17 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-	
-	
+<section class="hero">
 	{% if student_classroom_check %}
 	<h2>HI THIS IS {{ student_classroom }} </h2>
 	{% else %}
-	<div class="content-section">	
-		<form method="POST" enctype="multipart/form-data"> 
-			{% csrf_token %}     
+
+	<div class="content-section">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
 			<fieldset class="form-group">
-					<legend class="border-bottom mb-4">Join a Class</legend>
-					{{ c_form|crispy }}
+				<legend class="border-bottom mb-4">Join a Class</legend>
+				{{ c_form|crispy }}
 			</fieldset>
 			<div class="form-group">
 				<button class="btn btn-outline-info" type="submit">Join</button>
@@ -20,4 +20,5 @@
 		</form>
 	</div>
 	{% endif %}
+</section>
 {% endblock content %}

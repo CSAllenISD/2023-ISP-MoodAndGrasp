@@ -7,20 +7,13 @@ class Student(models.Model):
     gpa = models.FloatField(default=3.0)
     user_class_code = models.CharField(blank=True, default='', max_length=36)
     student_classroom = models.ManyToManyField(Classroom, blank=True)
-    Mood = models.IntegerField(default=0)
-    Grasp = models.IntegerField(default=0)
+    Mood = models.IntegerField(default=2)
+    Grasp = models.IntegerField(default=2)
 
     def __str__(self):
         return f'{self.user}'
 
 class SurveyQuestion(models.Model):
-    QUESTION_CHOICES = (
-        (-10, 'Far left'),
-        (-5, 'Close left'),
-        (0, 'Middle'),
-        (5, 'Close right'),
-        (10, 'Far right'),
-    )
     question = models.CharField(max_length=200, blank=True)
     mood_question = models.BooleanField(default=False)
     grasp_question = models.BooleanField(default=False)

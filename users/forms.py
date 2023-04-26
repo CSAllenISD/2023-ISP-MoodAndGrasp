@@ -7,7 +7,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField()
-
+	
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
@@ -29,7 +29,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = ['image']
+		fields = ['image', 'theme']
 
 class ClassJoinForm(forms.ModelForm):
 	class Meta:

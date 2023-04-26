@@ -11,12 +11,6 @@ def front_page(request):
 	}
 	return render(request, 'home/home.html', context)
 
-class PostListView(ListView):
-	model = Announcements
-	template_name = 'home/home.html' # <app>/<model>_<viewtype>.html
-	context_object_name = 'announcements'
-	ordering = ['-date_posted']
-
 class PostDetailView(DetailView):
 	model = Announcements
 

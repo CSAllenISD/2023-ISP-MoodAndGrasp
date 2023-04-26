@@ -4,6 +4,16 @@ ul {
   margin: 0;
 }
 
+
+hRobel {
+  color: pink;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Public Pixel', sans-serif;
+  font-size: 31px;
+}
 .account-img {
   height: 125px;
   width: 125px;
@@ -40,7 +50,7 @@ ul {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: pink;
+    background: linear-gradient(135deg, #f06292, #5c6bc0);
     margin: 0;
     padding: 0;
 }
@@ -48,7 +58,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
+    background: rgba(0, 0, 0, 0.7);
     height: 80px;
     position: relative;
     padding: 0 20px;
@@ -83,7 +93,7 @@ nav a {
     margin: 2rem;
     width: 150%; /* Increase the width */
     padding: 2rem; /* Increase the padding */
-    background-color: black;
+    background: rgba(0, 0, 0, 0.7);
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
@@ -195,7 +205,7 @@ nav a {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow:rgba(0,0,0,0.7);
     z-index: 1;
     top: 100%;
     left: 0;
@@ -205,7 +215,7 @@ nav a {
     display: block;
     padding: 8px 16px;
     text-decoration: none;
-    color: black;
+    color: rgba(0,0,0,0.7);
 }
 
 .dropdown-content a:hover {
@@ -217,7 +227,7 @@ nav a {
 }
 
 .dropbtn {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 8px;
     font-size: 16px;
