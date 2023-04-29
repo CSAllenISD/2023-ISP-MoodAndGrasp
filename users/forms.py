@@ -5,9 +5,10 @@ from .models import Profile, Classroom
 from home.models import Announcements
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+
 class UserRegisterForm(UserCreationForm):
 	email = forms.EmailField()
-	
+
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']
@@ -18,6 +19,12 @@ class UserRegisterForm(UserCreationForm):
 				
 			#	raise forms.ValidationError('That email is in use. Please Log in or use a different Email')
 			return email
+
+class TeacherRegisterForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = ['is_teacher']
+		labels = {"is_teacher": "Are you a teacher?"}
 
 class UserUpdateForm(forms.ModelForm):
 	email = forms.EmailField()
