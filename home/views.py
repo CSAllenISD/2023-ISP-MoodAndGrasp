@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Announcements
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from users.models import *
 # Create your views here.
 
 def front_page(request):
 	context = {
 		'announcements': Announcements.objects.all(),
-		'home': True
+		'home': True,
 	}
 	return render(request, 'home/home.html', context)
 

@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from chartjs import views
 from chartjs.views import SurveyCreateView
+from theme import views as theme_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', views.ChartData.as_view()),
@@ -37,6 +38,8 @@ urlpatterns = [
     path('survey/', views.survey, name='survey'),
     path('surveySubmit/(<int:mood>)-(<int:grasp>)', views.surveySubmit, name='surveySubmit'),
     path('', include('home.urls'), name='front_page'),
+    path("__reload__/", include("django_browser_reload.urls")),
+    path('tailwind/', theme_views.baseView, name='tailwind')
 
 ]
 

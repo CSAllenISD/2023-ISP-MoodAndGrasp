@@ -34,6 +34,7 @@ class ChartData(APIView):
             ]
         chartLabel = "my data"
         chartdata = [0, 10, 5, 2, 20, 30, 45]
+        scatterdata = []
         data ={
                      "labels":labels,
                      "chartLabel":chartLabel,
