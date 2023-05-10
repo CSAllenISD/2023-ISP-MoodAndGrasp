@@ -13,6 +13,7 @@ class Student(models.Model):
     def __str__(self):
         return f'{self.user}'
 
+
 class SurveyQuestion(models.Model):
     question = models.CharField(max_length=200, blank=True)
     mood_question = models.BooleanField(default=False)

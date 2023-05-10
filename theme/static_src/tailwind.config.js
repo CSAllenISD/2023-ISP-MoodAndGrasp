@@ -45,6 +45,44 @@ module.exports = {
     theme: {
         extend: {},
     },
+    daisyui: {
+        themes: [
+          {
+            mytheme: {
+            
+                "primary": "#c4b5fd",
+                            
+                "secondary": "#c084fc",
+                            
+                "accent": "#8e64d6",
+                            
+                "neutral": "#17171C",
+                            
+                "base-100": "#542759",
+                            
+                "info": "#7A9EDC",
+                            
+                "success": "#22BF63",
+                            
+                "warning": "#F6D13C",
+                            
+                "error": "#EE778F",
+            },
+          },
+          "light",
+          "dark",
+          "cupcake",
+          "bumblebee",
+          "emerald",
+          "corporate",
+          "synthwave",
+          "valentine",
+          "halloween",
+          "forest",
+          "luxury",
+          "night",
+        ],
+      },
     plugins: [
         /**
          * '@tailwindcss/forms' is the forms plugin that provides a minimal styling
@@ -56,5 +94,10 @@ module.exports = {
         require('@tailwindcss/line-clamp'),
         require('@tailwindcss/aspect-ratio'),
         require("daisyui"),
+
+    ],
+    safelist: [
+        'text-5xl',
+        'lg:text-4xl',
     ],
 }

@@ -1,0 +1,18 @@
+label {
+    color: blue;
+}
+
+.text-gray-600 {
+    --tw-text-opacity: 1 !important; 
+    color: hsl(var(--bc) / var(--tw-text-opacity)) !important;
+}
+.text-gray-700 {
+    --tw-text-opacity: 1 !important ;
+    color: hsl(var(--bc) / var(--tw-text-opacity)) !important;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+    --tw-bg-opacity: 1 !important;
+    color: black !important;
+}

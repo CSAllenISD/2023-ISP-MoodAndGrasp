@@ -6,7 +6,6 @@ import random
 
 class Classroom(models.Model):
 	classroom = models.OneToOneField(User, on_delete=models.CASCADE)
-
 	def create_new_class_code(self):
 		not_unique = True
 		while not_unique:
@@ -36,17 +35,23 @@ class Profile(models.Model):
 	is_teacher = models.BooleanField(default=False)
 
 	THEMES = (
-        ('a', 'Beach'),
-        ('b', 'Winter'),
-        ('c', 'Castle'),
-        ('d', 'Ocean'),
-		('e', 'Space'),
-		('f', 'Haunted'),
-		('g', 'Mystic'),
-		('h', 'Default Gradient')
+		('default', 'Default'),
+        ('light', 'Light'),
+        ('dark', 'Dark'),
+        ('cupcake', 'Cupcake🧁'),
+        ('bumblebee', 'Bumblebee🐝'),
+		('emerald', 'Emerald🍀'),
+		('mytheme', 'Robel😎'),
+		('corporate', 'Corporate📊'),
+		('synthwave', 'Synthwave🔉'),
+		('valentine', 'Valentine❤️'),
+		('halloween', 'Halloween🎃'),
+		('forest', 'Forest🌲'),
+		('luxury', 'Luxury💰'),
+		('night', 'Night🌚'),
     )
 
-	theme = models.CharField(max_length=1, choices=THEMES, default='h')
+	theme = models.CharField(max_length=15, choices=THEMES, default='default')
 	
 	def __str__(self):
 		return f'{self.user.username} Profile'

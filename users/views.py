@@ -28,6 +28,8 @@ def register(request):
 		form_teacher = TeacherRegisterForm()
 	return render(request, 'users/register.html', {'form':form, 'form_teacher':form_teacher})
 
+
+
 @login_required
 def profile(request):
 	if request.method == 'POST':
@@ -69,4 +71,5 @@ def classes(request):
 		'student_classroom_check':code.student_classroom.exists()
 	}
 	return render(request, 'users/classes.html', context)
+
 

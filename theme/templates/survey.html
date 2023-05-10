@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1 class="text-5xl font-bold text-center">Survey</h1>
+  {% for question in mood_questions %}
+<center>
+  <div class="content-center">
+  <label class="col-md-4 col-form-label">{{ question.question }}</label> <br />
+     <input type="range" min="0" max="100" value="50" class="range range-primary w-8/12 " step="12.5" id="mood_{{ forloop.counter }}" />
+     <div class=" w-8/12 flex justify-between text-xs px-2">
+        <img class="slider-image" src="{% static question.emoji_1 %}" width="50" height="50" data-position="1">
+        <img class="slider-image" src="{% static question.emoji_2 %}" width="50" height="50" data-position="2">
+        <img class="slider-image" src="{% static question.emoji_3 %}" width="50" height="50" data-position="3">
+        <img class="slider-image" src="{% static question.emoji_4 %}" width="50" height="50" data-position="4">
+        <img class="slider-image" src="{% static question.emoji_5 %}" width="50" height="50" data-position="5">
+     </div>
+    </div>
+
+     <br />
+     <br />
+  {% endfor %}
+
+  {% for question in grasp_questions %}
+  <label class="col-md-4 col-form-label">{{ question.question }}</label> <br />
+     <input type="range" min="0" max="100" value="25" class="range range-primary w-8/12 flex justify-center items-center" step="12.5" id="grasp_{{ forloop.counter }}" />
+     <div class="w-8/12 flex justify-between text-xs px-2">
+        <img class="slider-image" src="{% static question.emoji_1 %}" width="50" height="50" data-position="1">
+        <img class="slider-image" src="{% static question.emoji_2 %}" width="50" height="50" data-position="2">
+        <img class="slider-image" src="{% static question.emoji_3 %}" width="50" height="50" data-position="3">
+        <img class="slider-image" src="{% static question.emoji_4 %}" width="50" height="50" data-position="4">
+        <img class="slider-image" src="{% static question.emoji_5 %}" width="50" height="50" data-position="5">
+     </div>
+
+     <br />
+     <br />
+  {% endfor %}
+</center>
+  <button class="btn btn-outline-info" onclick="redirect()">Submit</button>
+<div id="slider-value"></div>
+<script type="text/javascript">
+  let moodValue = 0;
+  let graspValue = 0;
+  var valueTotal = 0;
+  function  sliderVal(value) {
+    switch(value) {
+      case "1":
+        valueTotal = 0;
+        break;
+      case "2":
+        valueTotal = 1;
+        break;
+      case "3":
+        valueTotal = 2;
+        break;
+      case "4":
+        valueTotal = 3;
+        break;
+      case "5":
+        valueTotal = 4;
+        break;
+    }
+      return valueTotal
+    
+  }
+  function redirect() {
+
+    mood_q1 = document.getElementById("mood_1");
+    mood_q2 = document.getElementById("mood_2");
+    mood_q3 = document.getElementById("mood_3");
+    mood_q4 = document.getElementById("mood_4");
+
+    grasp_q1 = document.getElementById("grasp_1");
+    grasp_q2 = document.getElementById("grasp_2");
+    grasp_q3 = document.getElementById("grasp_3");
+    grasp_q4 = document.getElementById("grasp_4");
+    var moodTotal = 0;
+    var graspTotal = 0;
+
+    moodTotal = parseInt(mood_q1.value) +  parseInt(mood_q2.value) +  parseInt(mood_q3.value) +  parseInt(mood_q4.value); 
+    graspTotal =  parseInt(grasp_q1.value) +  parseInt(grasp_q2.value) +  parseInt(grasp_q3.value) +  parseInt(grasp_q4.value);
+    surveyRedirect = "/surveySubmit/(" + parseInt(moodTotal) + ")-(" + parseInt(graspTotal) + ")";
+    location.href = surveyRedirect;
+
+  }
+
+
+</script>
+
+
+
+{% endblock content %}

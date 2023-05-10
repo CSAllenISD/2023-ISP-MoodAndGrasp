@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <title>chatsjs</title>
+    <!-- Latest compiled and minified CSS -->
+  
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  
+  </head>
+  
+  <body class="container-fluid">
+    <center class="row">
+      <p class="text-5xl">implementation of <b>chartJS</b> using <b>django</b></p>
+    </center>
+
+    <div class="row">
+      <div class="col-md-6">
+        <canvas id="myChartline"></canvas>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  
+    <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      var endpoint = '/api';
+  
+      $.ajax({
+        method: "GET",
+        url: endpoint,
+        success: function (data) {
+          drawLineGraph(data, 'myChartline');
+          drawBarGraph(data, 'myChartBar');
+          console.log("drawing");
+        },
+        error: function (error_data) {
+          console.log(error_data);
+        }
+      })
+  
+  
+      function drawLineGraph(data, id) {
+        var labels = data.labels;
+        var chartLabel = data.chartLabel;
+        var chartdata = data.chartdata;
+        var ctx = document.getElementById(id).getContext('2d');
+        var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+  
+          // The data for our dataset
+          data: {
+            labels: labels,
+            datasets: [{
+              label: chartLabel,
+              backgroundColor: 'rgb(255, 100, 200)',
+              borderColor: 'rgb(55, 99, 132)',
+              data: chartdata,
+            }]
+          },
+  
+          // Configuration options go here
+          options: {
+            scales: {
+              xAxes: [{
+                display: true
+              }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          }
+  
+        });
+      }
+  
+      function drawBarGraph(data, id) {
+        var labels = data.labels;
+        var chartLabel = data.chartLabel;
+        var chartdata = data.chartdata;
+        var ctx = document.getElementById(id).getContext('2d');
+        var myImage = new Image();
+        myImage.src = 'http://localhost:8000/media/profile_pics/Nahom.jpg';
+        myImage.width = 30;
+        myImage.height = 30;
+        const scatterdata = {
+          datasets: [{
+            label: 'Scatter Dataset',
+            data: [{
+              x: -10,
+              y: 0
+            }, {
+              x: 0,
+              y: 10
+            }, {
+              x: 10,
+              y: 5
+            }, {
+              x: 0.5,
+              y: 5.5
+            }],
+            backgroundColor: 'rgb(255, 99, 132)',
+//            pointRadius: [10, 0, 10, 10],
+//           pointHoverRadius: 20,
+//            pointHitRadius: 20,
+//            pointStyle: ['rect', myImage, 'triangle', 'circle'],
+  
+          }],
+        };
+        var myChart = new Chart(ctx, {
+          type: 'scatter',
+          data: scatterdata,
+          options: {
+            scales: {
+              x: {
+                type: 'linear',
+                position: 'bottom'
+              }
+            }
+          }
+        });
+      }
+    });
+    </script>
+  </body>
+  
+
+{% endblock content%}

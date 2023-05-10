@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="../static/css/dist/form.css">
+  </head>
+  
+<div class="w-full max-w-2xl  pl-32 ps-32 base-content">
+    <div class="hero-content flex-col lg:flex-row"> 
+        <div class="flex flex-col w-full ">
+            <h1 class="text-5xl font-bold">Join Today</h1>
+            <div class="divider"></div> 
+        </div>
+      </div>
+    <form method="post">
+      {% csrf_token %}
+
+      {{ r_form|crispy }}
+      {{ t_form|crispy }}
+
+      <button type="submit" class="btn btn-accent" name="submit" value="Submit">Submit</button>
+    </form>
+
+    <div class="border-top pt-3">
+        <small class="text-muted ">
+            Already have an account? <a class="ml-2 link" href="{% url 'user_login' %}">Log In</a> 
+        </small>
+    </div>
+</div>
+{% endblock content %}

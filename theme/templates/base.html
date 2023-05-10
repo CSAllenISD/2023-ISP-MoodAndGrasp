@@ -1,6 +1,11 @@
 {% load static tailwind_tags %}
+
 <!DOCTYPE html>
+{% if user.is_authenticated and user.profile.theme != 'default' %}
+<html lang="en" data-theme="{{ user.profile.theme }}">
+{% else %}
 <html lang="en">
+{% endif %}
 	<head>
     <title>Django Tailwind</title>
 		<meta charset="UTF-8">
@@ -9,6 +14,59 @@
 		{% tailwind_css %}
 	</head>
 
-	
+	{% if user.profile.theme == "emerald" %}
+	<div class="navbar bg-primary-focus">
+	{% elif user.profile.theme == "valentine"%}
+	<div class="navbar bg-primary">
+	{% else %}
+	<div class="navbar bg-secondary-focus">
+	{% endif%}
+		<div class="navbar-start">
+			<div class="dropdown">
+			  <label tabindex="0" class="btn btn-ghost btn-circle">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+			  </label>
+			  <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52">
+				<li><a href="{% url 'front_page' %}">Homepage</a></li>
+				<li><a href="{% url 'classroom' %}">Classrooms</a></li>
+				<li><a href="{% url 'front_page' %}">Stats</a></li>
+			  </ul>
+			</div>
+		  </div>
+		<div class="navbar-center">
+			<a class="btn btn-ghost normal-case text-xl">Mood And Grasp</a>
+		</div>
+		<div class="navbar-end">
+		  <div class="dropdown dropdown-end">
+			<label tabindex="0" class="btn btn-ghost btn-circle avatar">
+			  <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+				{% if user.is_authenticated %}
+				<img src="{{ user.profile.image.url }}" />
+				{% else %}
+				<img src="/media/logo.png" />
+				{% endif %}
+			  </div>
+			</label>
+			<ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-200 rounded-box w-52">
+			{% if user.is_authenticated %}
+			  <li><a class="justify-between" href="{% url 'profile_view' %}">Profile</a></li>
+			  <li><a href="{% url 'user_logout' %}">Logout</a></li>
+			{% else %}
+			<li><a class="justify-between" href="{% url 'user_registration' %}">Register</a></li>
+			<li><a href="{% url 'user_login' %}">Login</a></li>
+			{% endif %}
+
+			</ul>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	{% if messages %}
+	{% for message in messages %}
+		<div class="alert alert-{{ message.tags }} shadow-lg "> 
+			{{ message }}
+		</div>
+	{% endfor %}
+{% endif %}
 	{% block content %}{% endblock %}
 </html>

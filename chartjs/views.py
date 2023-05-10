@@ -97,7 +97,7 @@ def survey(request):
         'grasp_questions': grasp_question,
         'student': student
     }
-    return render(request, 'chartjs/survey.html', context)
+    return render(request, 'survey.html', context)
 
 def surveySubmit(request, mood=int, grasp=int):
     s = Student.objects.get(user=request.user)
@@ -129,6 +129,3 @@ class SurveyFormView(FormView):
         user.save()
         return super().form_valid(form)
 
-def testing(request):
-    result = request.GET.get('result', None)
-    return JsonResponse()

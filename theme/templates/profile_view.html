@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+  <head>
+    <link rel="stylesheet" href="../static/css/dist/form.css">
+  </head>
+  <div class="hero h-48 w-16 py-8 px-32">
+    <div class="hero-content flex-col lg:flex-row">
+        <div class="avatar ">
+            <div class="w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 " >
+              <img src="{{ user.profile.image.url }}" />
+            </div>
+          </div>      <div>
+        <h1 class="text-5xl font-bold">{{user.username}}</h1>
+        <p class="py-6">{{user.email}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div> 
+
+  <div class="w-full max-w-2xl   pl-32 ps-32 base-content">
+    <form method="post">
+      {% csrf_token %}
+
+      {{ u_form|crispy }}
+      {{ p_form|crispy }}
+
+      <button type="submit" class="btn btn-accent"  value="Submit">Submit</button>
+    </form>
+  </div>
+  <!--
+  <form method="post">
+    <div class="form-control w-full max-w-xl px-32">
+        <label class="label">
+        <span class="label-text">Username</span>
+        </label>
+        <input type="text" placeholder="Type here" class="input input-bordered input-primary w-full max-w-xs" value="{{ user.username}}" />
+        <label class="label">
+        </label>
+    </div>
+ </form>
+-->
+
+{% endblock content %}
