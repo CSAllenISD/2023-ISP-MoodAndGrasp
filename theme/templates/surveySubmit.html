@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="w-full max-w-2xl  pl-32 ps-32 base-content">
+
+    <h1 class="text-5xl font-bold">Survey Results</h1>
+    <div class="divider"></div>
+        <p>Average Mood answer: {{ mood_average }}</p>
+        <p>Average Grasp answer: {{ grasp_average }}</p>
+    <h3> Your response has been submitted!</h3>
+</div>
+{% endblock content %}

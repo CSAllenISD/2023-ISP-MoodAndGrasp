@@ -7,7 +7,7 @@
 <center>
   <div class="content-center">
   <label class="col-md-4 col-form-label">{{ question.question }}</label> <br />
-     <input type="range" min="0" max="100" value="50" class="range range-primary w-8/12 " step="12.5" id="mood_{{ forloop.counter }}" />
+     <input type="range" min="0" max="100" value="50" class="range range-primary w-8/12 " step="12.5" id="mood_{{ forloop.counter }}" onclick="sliderVal(value)" />
      <div class=" w-8/12 flex justify-between text-xs px-2">
         <img class="slider-image" src="{% static question.emoji_1 %}" width="50" height="50" data-position="1">
         <img class="slider-image" src="{% static question.emoji_2 %}" width="50" height="50" data-position="2">
@@ -23,7 +23,7 @@
 
   {% for question in grasp_questions %}
   <label class="col-md-4 col-form-label">{{ question.question }}</label> <br />
-     <input type="range" min="0" max="100" value="25" class="range range-primary w-8/12 flex justify-center items-center" step="12.5" id="grasp_{{ forloop.counter }}" />
+     <input type="range" min="0" max="100" value="50" class="range range-primary w-8/12 flex justify-center items-center" step="12.5" id="grasp_{{ forloop.counter }}" onclick="sliderVal(value)"/>
      <div class="w-8/12 flex justify-between text-xs px-2">
         <img class="slider-image" src="{% static question.emoji_1 %}" width="50" height="50" data-position="1">
         <img class="slider-image" src="{% static question.emoji_2 %}" width="50" height="50" data-position="2">
@@ -77,8 +77,8 @@
     var moodTotal = 0;
     var graspTotal = 0;
 
-    moodTotal = parseInt(mood_q1.value) +  parseInt(mood_q2.value) +  parseInt(mood_q3.value) +  parseInt(mood_q4.value); 
-    graspTotal =  parseInt(grasp_q1.value) +  parseInt(grasp_q2.value) +  parseInt(grasp_q3.value) +  parseInt(grasp_q4.value);
+    moodTotal = parseInt((parseInt(mood_q1.value) +  parseInt(mood_q2.value) +  parseInt(mood_q3.value) +  parseInt(mood_q4.value))/4); 
+    graspTotal =  parseInt((parseInt(grasp_q1.value) +  parseInt(grasp_q2.value) +  parseInt(grasp_q3.value) +  parseInt(grasp_q4.value))/4);
     surveyRedirect = "/surveySubmit/(" + parseInt(moodTotal) + ")-(" + parseInt(graspTotal) + ")";
     location.href = surveyRedirect;
 

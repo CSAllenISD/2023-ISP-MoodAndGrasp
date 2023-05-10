@@ -109,7 +109,7 @@ def surveySubmit(request, mood=int, grasp=int):
         'mood_average': mood,
         'grasp_average': grasp,
     }
-    return render(request, 'chartjs/surveySubmit.html', context)
+    return render(request, 'surveySubmit.html', context)
 
 class SurveyFormView(FormView):
     template_name = 'chartjs/survey.html'
