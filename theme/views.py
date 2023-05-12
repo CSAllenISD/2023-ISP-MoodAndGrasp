@@ -109,3 +109,11 @@ class ChartData(APIView):
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'graph.html')
+
+
+def classes(request):
+    student = Student.objects.get(user=request.user)
+    context = {
+        'class_group': student.student_classroom.all()
+    }
+    return render(request, 'classes.html', context)

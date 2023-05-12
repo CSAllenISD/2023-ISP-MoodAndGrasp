@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% if user.student.student_classroom %}
+
+
+  <div class="h-56 pt-60 grid grid-cols-3 gap-4 content-center ">
+{% for classroom in user.student.student_classroom.all %}    
+        <div class="card card-compact w-96 bg-secondary shadow-xl">
+            <a href="/classroom/{{ classroom.id }}">
+                <figure><img src="{{ classroom.logo.url }}" alt="class"  class="max-w-xs"/></figure>
+                <div class="card-body">
+                    <h2 class="card-title">{{ classroom }}</h2>
+                </div>
+            </a>   
+        </div>
+{% endfor %}
+  </div>
+
+
+{% else %}
+
+
+
+{% endif %}
+
+{% endblock content %}

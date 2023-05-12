@@ -6,6 +6,8 @@ import random
 
 class Classroom(models.Model):
 	classroom = models.OneToOneField(User, on_delete=models.CASCADE)
+	banner = models.ImageField(upload_to='class_banners', default='class_banners/sample_banner.png')
+	logo = models.ImageField(upload_to='class_logos', default='class_logos/default_class_logo.png')
 	def create_new_class_code(self):
 		not_unique = True
 		while not_unique:
